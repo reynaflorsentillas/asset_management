@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="asset_management_reader_view_tree" model="ir.ui.view">
+            <field name="name">asset_management.reader.tree</field>
+            <field name="model">asset_management.reader</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="RFID Reader">
+                    <field name="name" />
+                    <field name="type" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="asset_management_reader_view_form" model="ir.ui.view">
+            <field name="name">asset_management.reader.form</field>
+            <field name="model">asset_management.reader</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="RFID Reader">
+                    <header/>
+                    <sheet>
+                        <div class="oe_title" name="title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name"   placeholder="Name" /></h1>
+                        </div>
+                        <group>
+                            <field name="type" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="asset_management_reader_view_search" model="ir.ui.view">
+            <field name="name">asset_management.reader.search</field>
+            <field name="model">asset_management.reader</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="RFID Reader">
+                    <field name="name" />
+                    <field name="type" />
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter string="name" domain="[]" context="{'group_by':'name'}" />
+                        <filter string="type" domain="[]" context="{'group_by':'type'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="asset_management_reader_action">
+            <field name="name">RFID Readers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">asset_management.reader</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="asset_management_reader_view_search" />
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+    </data>
+</odoo>

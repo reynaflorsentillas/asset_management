@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- Top menu item -->
+        <menuitem name="Asset Management" id="base.menu_mro_root" sequence="80"/>
+
+
+        <!-- Asset menu -->
+        <menuitem name="Assets" id="menu_asset_management_assets" parent="base.menu_mro_root" groups="asset_management.group_mro_customer" sequence="10"/>
+        <!-- Asset item -->
+        <menuitem name="Assets" action="action_assets" id="menu_asset_management_assets_assets" parent="menu_asset_management_assets" groups="asset_management.group_mro_customer" sequence="10"/>
+        <!-- Management Asset item -->
+        <menuitem name="Manage States" action="action_management_assets" id="menu_asset_management_assets_management" parent="menu_asset_management_assets" groups="asset_management.group_mro_user" sequence="20"/>
+        
+
+        <!-- Asset Transactions menu -->
+        <menuitem name="Asset Transactions" id="menu_asset_management_transaction" parent="base.menu_mro_root" groups="asset_management.group_mro_customer" sequence="20"/>
+        <!-- Asset Transactions item -->
+        <menuitem name="Asset Transactions" action="asset_management_transaction_action" id="menu_asset_management_transaction_assets" parent="menu_asset_management_transaction" groups="asset_management.group_mro_customer" sequence="10"/>
+
+
+        <!-- Report menu -->
+        <menuitem name="Reports" id="menu_asset_management_report" parent="base.menu_mro_root" groups="asset_management.group_mro_customer" sequence="90"/>
+
+
+        <!-- Configuration Menu -->
+        <menuitem name="Configuration" id="menu_asset_management_config" parent="base.menu_mro_root" groups="asset_management.group_mro_manager" sequence="100"/>
+        <!-- Asset State Item -->
+        <menuitem name="Asset States" action="action_asset_state" id="menu_asset_state" parent="menu_asset_management_config" groups="asset_management.group_mro_manager" sequence="10"/>
+        <!-- Asset Tags item -->
+        <menuitem name="Asset Tags" action="action_asset_category" id="menu_asset_category" parent="menu_asset_management_config" groups="asset_management.group_mro_manager" sequence="20"/>
+        <!-- Security Gates -->
+        <menuitem name="Security Gates" action="asset_management_security_gate_action" id="menu_asset_security_gate" parent="menu_asset_management_config" groups="asset_management.group_mro_manager" sequence="30"/>
+        <!-- RFID Readers -->
+        <menuitem name="RFID Readers" action="asset_management_reader_action" id="menu_asset_reader" parent="menu_asset_management_config" groups="asset_management.group_mro_manager" sequence="40"/>
+    </data>
+</openerp>
