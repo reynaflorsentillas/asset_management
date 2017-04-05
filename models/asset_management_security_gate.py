@@ -9,6 +9,6 @@ class AssetManagementSecurityGate(models.Model):
         ('entry','Entry'),
         ('exit', 'Exit'),
     ], required=True)
-    reader_id = fields.Many2one(comodel_name='asset_management.reader', string='Assigned Reader', required=True)
+    reader_id = fields.Many2one(comodel_name='asset_management.reader', string='Assigned Reader')
     more_info = fields.Text(string='More Info')
     

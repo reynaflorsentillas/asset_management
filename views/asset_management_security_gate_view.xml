@@ -9,6 +9,7 @@
                 <tree string="Security Gate">
                     <field name="name" />
                     <field name="type" />
+                    <field name="reader_id" />
                     <field name="more_info" />
                 </tree>
             </field>

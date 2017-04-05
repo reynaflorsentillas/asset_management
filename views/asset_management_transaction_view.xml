@@ -12,6 +12,7 @@
                     <field name="security_gate_id" />
                     <field name="reader_name"/>
                     <field name="status" />
+                    <field name="transaction_date" />
                 </tree>
             </field>
         </record>
@@ -38,6 +39,7 @@
                             <field name="mac_address" />
                             <field name="tid" />
                             <field name="epc" />
+                            <field name="transaction_date" />
                         </group>
                     </sheet>
                 </form>
