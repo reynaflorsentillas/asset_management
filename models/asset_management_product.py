@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
-from odoo import api, fields, models
-from odoo import tools
+from odoo import models, fields
 
 STATE_COLOR_SELECTION = [
     ('0', 'Red'),
@@ -15,56 +13,21 @@ STATE_COLOR_SELECTION = [
     ('9', 'SkyBlue')
 ]
 
-class AssetManagementState(models.Model):
-    """ 
-    Model for asset states.
-    """
-    _name = 'asset_management.state'
-    _description = 'State of Asset'
-    _order = "sequence"
+class ProductProduct(models.Model):
+    _inherit = 'product.template'
+    
+    is_asset = fields.Boolean(string='Is Asset', help='Check if the product is an asset')
 
-    STATE_SCOPE_TEAM = [
-        ('0', 'Finance'),
-        ('1', 'Warehouse'),
-        ('2', 'Manufacture'),
-        ('3', 'Maintenance'),
-        ('4', 'Accounting')
-    ]
+class AssetManagementAssetProduct(models.Model):
+    _inherit = 'product.template'
 
-    name = fields.Char('State', size=64, required=True, translate=True)
-    sequence = fields.Integer('Sequence', help="Used to order states.", default=1)
-    state_color = fields.Selection(STATE_COLOR_SELECTION, 'State Color')
-    team = fields.Selection(STATE_SCOPE_TEAM, 'Scope Team')
-
-    def change_color(self):
-        color = int(self.state_color) + 1
-        if (color>9): color = 0
-        return self.write({'state_color': str(color)})
-
-
-class AssetManagementCategory(models.Model):
-    _name = 'asset_management.category'
-    _description = 'Asset Tags'
-
-    name = fields.Char('Tag', required=True, translate=True)
-    asset_ids = fields.Many2many('asset_management.asset', id1='category_id', id2='asset_id', string='Assets')
-
-
-class AssetManagementAsset(models.Model):
-    """
-    Assets
-    """
-    _name = 'asset_management.asset'
-    _description = 'Asset'
-    _inherit = ['mail.thread']
-
-    @api.multi
-    def name_get(self):
-        result = []
-        for record in self:
-            name = '[' + str(record.asset_number) + ']' + ' ' + record.name
-            result.append((record.id, name))
-        return result
+    # @api.multi
+    # def name_get(self):
+    #     result = []
+    #     for record in self:
+    #         name = '[' + str(record.asset_number) + ']' + ' ' + record.name
+    #         result.append((record.id, name))
+    #     return result
 
     def _read_group_state_ids(self, domain, read_group_order=None, access_rights_uid=None, team='3'):
         access_rights_uid = access_rights_uid or self.uid
@@ -104,32 +67,33 @@ class AssetManagementAsset(models.Model):
         ('3', 'Critical')
     ]
 
-    name = fields.Char('Asset Name', size=64, required=True, translate=True)
+    # name = fields.Char('Asset Name', size=64, required=True, translate=True)
     finance_state_id = fields.Many2one('asset_management.state', 'State', domain=[('team','=','0')])
     warehouse_state_id = fields.Many2one('asset_management.state', 'State', domain=[('team','=','1')])
     manufacture_state_id = fields.Many2one('asset_management.state', 'State', domain=[('team','=','2')])
     maintenance_state_id = fields.Many2one('asset_management.state', 'State', domain=[('team','=','3')])
     maintenance_state_color = fields.Selection(related='maintenance_state_id.state_color', selection=STATE_COLOR_SELECTION, string="Color", readonly=True)
     criticality = fields.Selection(CRITICALITY_SELECTION, 'Criticality')
-    property_stock_asset = fields.Many2one('stock.location', "Asset Location", company_dependent=True, domain=[('usage', 'like', 'asset')], help="This location will be used as the destination location for installed parts during asset life.")
+    # property_stock_asset = fields.Many2one('stock.location', "Asset Location", company_dependent=True, domain=[('usage', 'like', 'asset')], help="This location will be used as the destination location for installed parts during asset life.")
     user_id = fields.Many2one('res.users', 'Assigned to', track_visibility='onchange')
     active = fields.Boolean('Active', default=True)
     status = fields.Selection([
         ('in', 'IN'),
         ('out', 'OUT'),
-    ])
+    ], string='Asset Current Status')
     asset_number = fields.Char('Asset Number', size=64)
     model = fields.Char('Model', size=64)
     serial = fields.Char('Serial No.', size=64)
+
     vendor_id = fields.Many2one('res.partner', 'Vendor')
     manufacturer_id = fields.Many2one('res.partner', 'Manufacturer')
     start_date = fields.Date('Start Date')
     purchase_date = fields.Date('Purchase Date')
     warranty_start_date = fields.Date('Warranty Start')
     warranty_end_date = fields.Date('Warranty End')
-    image = fields.Binary("Image")
-    image_small = fields.Binary("Small-sized image")
-    image_medium = fields.Binary("Medium-sized image")
+    # image = fields.Binary("Image")
+    # image_small = fields.Binary("Small-sized image")
+    # image_medium = fields.Binary("Medium-sized image")
     category_ids = fields.Many2many('asset_management.category', id1='asset_id', id2='category_id', string='Tags')
 
     expiration_date = fields.Datetime(string='Date')
@@ -145,12 +109,12 @@ class AssetManagementAsset(models.Model):
         'maintenance_state_id': _read_group_maintenance_state_ids,
     }
 
-    @api.model
-    def create(self, vals):
-        tools.image_resize_images(vals)
-        return super(AssetManagementAsset, self).create(vals)
+    # @api.model
+    # def create(self, vals):
+    #     tools.image_resize_images(vals)
+    #     return super(AssetManagementAsset, self).create(vals)
 
-    @api.multi
-    def write(self, vals):
-        tools.image_resize_images(vals)
-        return super(AssetManagementAsset, self).write(vals)
+    # @api.multi
+    # def write(self, vals):
+    #     tools.image_resize_images(vals)
+    #     return super(AssetManagementAsset, self).write(vals)

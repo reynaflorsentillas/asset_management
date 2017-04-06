@@ -37,6 +37,7 @@
         'data/stock_data.xml',
         'security/asset_management_security.xml',
         'security/ir.model.access.csv',
+        'views/asset_management_product_view.xml',
         'views/asset_management_view.xml',
         'views/asset_management_transaction_view.xml',
         'views/asset_management_security_gate_view.xml',

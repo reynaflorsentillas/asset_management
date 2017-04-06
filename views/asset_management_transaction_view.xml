@@ -76,5 +76,27 @@
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
+
+        <record model="ir.actions.act_window" id="asset_management_transaction_entry_action">
+            <field name="name">Asset Entry Logs</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">asset_management.transaction</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="asset_management_transaction_view_search" />
+            <field name="domain">[('status', '=', 'in')]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="asset_management_transaction_exit_action">
+            <field name="name">Asset Exit Logs</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">asset_management.transaction</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="asset_management_transaction_view_search" />
+            <field name="domain">[('status', '=', 'out')]</field>
+            <field name="context">{}</field>
+        </record>
     </data>
 </odoo>

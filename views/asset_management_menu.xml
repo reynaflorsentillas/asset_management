@@ -8,15 +8,19 @@
         <!-- Asset menu -->
         <menuitem name="Assets" id="menu_asset_management_assets" parent="base.menu_mro_root" groups="asset_management.group_mro_customer" sequence="10"/>
         <!-- Asset item -->
-        <menuitem name="Assets" action="action_assets" id="menu_asset_management_assets_assets" parent="menu_asset_management_assets" groups="asset_management.group_mro_customer" sequence="10"/>
+        <!--<menuitem name="Assets" action="action_assets" id="menu_asset_management_assets_assets" parent="menu_asset_management_assets" groups="asset_management.group_mro_customer" sequence="10"/>-->
+        <menuitem id="action_assets_product" name="Assets" action="product_template_action_product" parent="menu_asset_management_assets" sequence="10"/>
         <!-- Management Asset item -->
-        <menuitem name="Manage States" action="action_management_assets" id="menu_asset_management_assets_management" parent="menu_asset_management_assets" groups="asset_management.group_mro_user" sequence="20"/>
+        <!--<menuitem name="Manage States" action="action_management_assets" id="menu_asset_management_assets_management" parent="menu_asset_management_assets" groups="asset_management.group_mro_user" sequence="20"/>-->
+        
         
 
         <!-- Asset Transactions menu -->
         <menuitem name="Asset Transactions" id="menu_asset_management_transaction" parent="base.menu_mro_root" groups="asset_management.group_mro_customer" sequence="20"/>
         <!-- Asset Transactions item -->
         <menuitem name="Asset Transactions" action="asset_management_transaction_action" id="menu_asset_management_transaction_assets" parent="menu_asset_management_transaction" groups="asset_management.group_mro_customer" sequence="10"/>
+        <menuitem name="Asset Entry Logs" action="asset_management_transaction_entry_action" id="menu_asset_management_transaction_assets_entry" parent="menu_asset_management_transaction" groups="asset_management.group_mro_customer" sequence="20"/>
+        <menuitem name="Asset Exit Logs" action="asset_management_transaction_exit_action" id="menu_asset_management_transaction_assets_exit" parent="menu_asset_management_transaction" groups="asset_management.group_mro_customer" sequence="30"/>
 
 
         <!-- Report menu -->

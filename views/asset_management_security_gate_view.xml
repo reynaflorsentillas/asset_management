@@ -10,6 +10,7 @@
                     <field name="name" />
                     <field name="type" />
                     <field name="reader_id" />
+                    <field name="warehouse_id" />
                     <field name="more_info" />
                 </tree>
             </field>
@@ -30,6 +31,7 @@
                         <group>
                             <field name="type" />
                             <field name="reader_id" />
+                            <field name="warehouse_id" />
                             <field name="more_info" />
                         </group>
                     </sheet>
@@ -45,11 +47,13 @@
                 <search string="Security Gate">
                     <field name="name" />
                     <field name="type" />
+                    <field name="warehouse_id" />
                     <field name="more_info" />
                     <newline />
                     <group expand="0" string="Group By...">
                         <filter string="name" domain="[]" context="{'group_by':'name'}" />
                         <filter string="type" domain="[]" context="{'group_by':'type'}" />
+                        <filter string="warehouse_id" domain="[]" context="{'group_by':'warehouse_id'}" />
                     </group>
                 </search>
             </field>
