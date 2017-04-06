@@ -35,10 +35,14 @@ class AssetManagementTransaction(models.Model):
         
         asset_number = values['epc']
         if asset_number:
-            asset_id = self.env['product.template'].search([('default_code', '=', asset_number)])
-            if asset_id:
-                asset = self.env['product.template'].browse(asset_id.id)
-                values['asset_id'] = asset.id
+            # asset_id = self.env['product.template'].search([('default_code', '=', asset_number)])
+            # if asset_id:
+            #     asset = self.env['product.template'].browse(asset_id.id)
+            #     values['asset_id'] = asset.id
+            serial_id = self.env['stock.production.lot'].search([('name', '=', asset_number)])
+            if serial_id:
+                serial = self.env['stock.production.lot'].browse(serial_id.id)
+                values['asset_id'] = serial.product_id.id
 
         reader_name = values['reader_name']
         if reader_name:
