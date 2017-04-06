@@ -91,7 +91,7 @@
                             <group>
                                 <!--<field name="asset_number"/>-->
                                 <field name="model"/>
-                                <field name="serial"/>
+                                <!--<field name="serial"/>-->
                             </group>
 
                             <group>
